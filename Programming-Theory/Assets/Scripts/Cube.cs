@@ -5,9 +5,9 @@ using UnityEngine;
 public abstract class Cube : MonoBehaviour
 {
 
-    public bool StatusRotate {get; set;}
-    [SerializeField] float rotationSpeed;
-    [SerializeField] Vector3 rotationDirection;
+    public bool StatusRotate { get; set; }
+    [SerializeField] protected float rotationSpeed;
+    [SerializeField] protected Vector3 rotationDirection;
 
     // Update is called once per frame
 
@@ -17,19 +17,15 @@ public abstract class Cube : MonoBehaviour
     }
 
     protected abstract void SetRotationDirection();
-
-    void Update()
+    public void ChangeState()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (this.StatusRotate == false)
         {
-            if(this.StatusRotate == false)
-            {
-                StartRotate();
-            }
-            else
-            {
-                StopRotate();
-            }
+            StartRotate();
+        }
+        else
+        {
+            StopRotate();
         }
     }
 
